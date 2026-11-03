@@ -1,1 +1,6 @@
-{}
+{
+  "button": "Clear website cache",
+  "loading": "Clearing cache…",
+  "success": "Website cache cleared.",
+  "error": "Could not clear the website cache. Please try again."
+}

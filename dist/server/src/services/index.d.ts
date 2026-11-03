@@ -7,7 +7,9 @@ declare const _default: {
     trigger: ({ strapi }: {
         strapi: import("@strapi/types/dist/core").Strapi;
     }) => {
-        trigger(): void;
+        trigger(): Promise<{
+            success: boolean;
+        }>;
     };
 };
 export default _default;

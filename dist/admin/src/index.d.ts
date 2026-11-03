@@ -1,11 +1,13 @@
+import type { StrapiApp } from '@strapi/strapi/admin';
 declare const _default: {
-    register(app: any): void;
-    bootstrap(app: any): void;
+    register(app: StrapiApp): void;
     registerTrads({ locales }: {
         locales: string[];
     }): Promise<{
-        data: any;
         locale: string;
+        data: {
+            [k: string]: string;
+        };
     }[]>;
 };
 export default _default;
