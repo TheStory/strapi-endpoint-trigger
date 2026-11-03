@@ -1,0 +1,6 @@
+{
+  "button": "Wyczyść cache strony",
+  "loading": "Czyszczenie…",
+  "success": "Cache strony został wyczyszczony.",
+  "error": "Nie udało się wyczyścić cache strony. Spróbuj ponownie."
+}

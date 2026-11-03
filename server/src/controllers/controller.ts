@@ -1,20 +1,18 @@
 import type { Core } from '@strapi/strapi';
+import { CacheTriggerError } from '../services/trigger';
 
 const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
   index(ctx) {
-    ctx.body = strapi
-      .plugin('strapi-endpoint-trigger')
-      // the name of the service file & the method.
-      .service('service')
-      .getWelcomeMessage();
+    ctx.body = strapi.plugin('strapi-endpoint-trigger').service('service').getWelcomeMessage();
   },
-  trigger(ctx) {
-    ctx.body = strapi
-      .plugin('strapi-endpoint-trigger')
-      // the name of the service file & the method.
-      .service('trigger')
-      .trigger();
-  }
+  async trigger(ctx) {
+    try {
+      ctx.body = await strapi.plugin('strapi-endpoint-trigger').service('trigger').trigger();
+    } catch (error) {
+      if (!(error instanceof CacheTriggerError)) throw error;
+      ctx.throw(error.status, error.message, { expose: true });
+    }
+  },
 });
 
 export default controller;

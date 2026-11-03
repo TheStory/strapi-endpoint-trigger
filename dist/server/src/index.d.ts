@@ -14,10 +14,13 @@ declare const _default: {
     };
     controllers: {
         controller: ({ strapi }: {
+            /**
+             * Plugin server methods
+             */
             strapi: import("@strapi/types/dist/core").Strapi;
         }) => {
             index(ctx: any): void;
-            trigger(ctx: any): void;
+            trigger(ctx: any): Promise<void>;
         };
     };
     routes: {
@@ -56,7 +59,9 @@ declare const _default: {
         trigger: ({ strapi }: {
             strapi: import("@strapi/types/dist/core").Strapi;
         }) => {
-            trigger(): void;
+            trigger(): Promise<{
+                success: boolean;
+            }>;
         };
     };
     contentTypes: {};
